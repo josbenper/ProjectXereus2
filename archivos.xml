@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<archivos>
+	<Archivo>
+		<Directorio>D:\Musica\music</Directorio>
+		<Nombre>Demons.mp3</Nombre>
+		<Votos>8</Votos>
+	</Archivo>
+	<Archivo>
+		<Directorio>D:\Musica\music</Directorio>
+		<Nombre>Hooked On A Feeling.mp3</Nombre>
+		<Votos>10</Votos>
+	</Archivo>
+	<Archivo>
+		<Directorio>D:\Musica\music</Directorio>
+		<Nombre>I'm So Sorry.mp3</Nombre>
+		<Votos>6</Votos>
+	</Archivo>
+	<Archivo>
+		<Directorio>D:\Musica\music</Directorio>
+		<Nombre>It's Time.mp3</Nombre>
+		<Votos>5</Votos>
+	</Archivo>
+	<Archivo>
+		<Directorio>D:\Musica\music</Directorio>
+		<Nombre>Radioactive.mp3</Nombre>
+		<Votos>9</Votos>
+	</Archivo>
+</archivos>
