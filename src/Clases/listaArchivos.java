@@ -12,10 +12,11 @@ import java.util.ArrayList;
  *
  * @author Benavent
  */
-public class listaArchivos {
-    private ArrayList<Archivo> archivos = new ArrayList<Archivo>();
+public class listaArchivos{
+    private ArrayList<Archivo> archivos;
 
     public listaArchivos() {
+        archivos = new ArrayList<Archivo>();
     }
 
     
@@ -23,7 +24,7 @@ public class listaArchivos {
         return archivos;
     }
 
-    public void setArchivos(ArrayList<Archivo> archivos) {
+    public void setArchivos(Archivo cancion) {
         this.archivos = archivos;
     }
      

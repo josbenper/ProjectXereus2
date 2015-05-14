@@ -26,68 +26,11 @@ public class LeerXML {
     public static void main(String[] args) {
         leer();
     }
-    /*
-     try {
-     DocumentBuilderFactory fábricaCreadorDocumento = DocumentBuilderFactory.newInstance();
-     DocumentBuilder creadorDocumento = fábricaCreadorDocumento.newDocumentBuilder();
-     Document documento = creadorDocumento.parse("archivos.xml");
-     //Obtener el elemento raíz del documento
-     Element raiz = documento.getDocumentElement();
 
-     //Obtener la lista de nodos que tienen etiqueta "EMPLEADO"
-     NodeList listaEmpleados = raiz.getElementsByTagName("Archivo");
-     //Recorrer la lista de empleados
-     for (int i = 0; i < listaEmpleados.getLength(); i++) {
-     //Obtener de la lista un empleado tras otro
-     Node empleado = listaEmpleados.item(i);
-     System.out.println("Mp3 " + i);
-     System.out.println("==========");
-
-     //Obtener la lista de los datos que contiene ese empleado
-     NodeList datosEmpleado = empleado.getChildNodes();
-     //Recorrer la lista de los datos que contiene el empleado
-     for (int j = 0; j < datosEmpleado.getLength(); j++) {
-     //Obtener de la lista de datos un dato tras otro
-     Node dato = datosEmpleado.item(j);
-
-     //Comprobar que el dato se trata de un nodo de tipo Element
-     if (dato.getNodeType() == Node.ELEMENT_NODE) {
-     //Mostrar el nombre del tipo de dato
-     System.out.print(dato.getNodeName() + ": ");
-     //El valor está contenido en un hijo del nodo Element
-     Node datoContenido = dato.getFirstChild();
-     //Mostrar el valor contenido en el nodo que debe ser de tipo Text
-     if (datoContenido != null && datoContenido.getNodeType() == Node.TEXT_NODE) {
-     System.out.println(datoContenido.getNodeValue());
-     }
-     }
-     }
-     //Se deja un salto de línea de separación entre cada empleado
-     System.out.println();
-     }
-
-     } catch (SAXException ex) {
-     System.out.println("ERROR: El formato XML del fichero no es correcto\n" + ex.getMessage());
-     ex.printStackTrace();
-     } catch (IOException ex) {
-     System.out.println("ERROR: Se ha producido un error el leer el fichero\n" + ex.getMessage());
-     ex.printStackTrace();
-     } catch (ParserConfigurationException ex) {
-     System.out.println("ERROR: No se ha podido crear el generador de documentos XML\n" + ex.getMessage());
-     ex.printStackTrace();
-     }
-     }
-     */
-
-    private static void leer() {
-        /*
-        int max = -1;
-        int posMax = -1;
-        int pos = 0;
-        */
-        
-        listaArchivos la;
-        Archivo archivo;
+    public static void leer() {
+  
+        listaArchivos listaAr = null;
+        Archivo cancion;
         String directorio="", nombre="";
         int votos=0;
         
@@ -98,9 +41,9 @@ public class LeerXML {
             //Obtener el elemento raíz del documento
             Element raiz = documento.getDocumentElement();
 
-            //Obtener la lista de nodos que tienen etiqueta "EMPLEADO"
+            //Obtener la lista de nodos que tienen etiqueta "Archivo"
             NodeList listaEmpleados = raiz.getElementsByTagName("Archivo");
-            //Recorrer la lista de empleados
+            //Recorrer la lista de archivos
             for (int i = 0; i < listaEmpleados.getLength(); i++) {
                 //Obtener de la lista un empleado tras otro
                 Node empleado = listaEmpleados.item(i);
@@ -135,26 +78,9 @@ public class LeerXML {
                             votos=Integer.parseInt(datoContenido.getNodeValue());
                         }
                         /*
-                        archivo.setDirectorio(directorio);
-                        archivo.setNombre(nombre);
-                        archivo.setVotos(votos);
+                        cancion = new Archivo(directorio, nombre, votos);
+                        listaAr.getArchivos().add(cancion);
                         */
-                        archivo = new Archivo(directorio, nombre, votos);
-                        
-                        
-                        /*
-                         if (dato.getNodeName().toString().equalsIgnoreCase("votos")) {
-                         if (max<0) {
-                         max=Integer.parseInt(datoContenido.getNodeValue());
-                         posMax=pos;
-                         } else {
-                         if (max<Integer.parseInt(datoContenido.getNodeValue())) {
-                         max=Integer.parseInt(datoContenido.getNodeValue());
-                         posMax=pos;
-                         }
-                         }
-                         }
-                         */
                     }
                 }
                 //Se deja un salto de línea de separación entre cada mp3

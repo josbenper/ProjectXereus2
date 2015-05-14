@@ -60,7 +60,7 @@ public class GeneradorXML {
             DOMImplementation implementation = builder.getDOMImplementation();
             Document document = implementation.createDocument(null, name, null);
             document.setXmlVersion("1.0");
-
+            
             //Main Node
             Element raiz = document.getDocumentElement();
             //Por cada key creamos un item que contendrá la key y el value

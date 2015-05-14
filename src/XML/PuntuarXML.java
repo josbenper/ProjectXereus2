@@ -60,6 +60,38 @@ public class PuntuarXML {
             e1.printStackTrace();
         }
     }
+    
+    public static void votar(){
+        Scanner t = new Scanner(System.in);
+        String cancion;
+        String filePath = "archivos.xml";
+        File xmlFile = new File(filePath);
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder dBuilder;
+
+        try {
+            dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(xmlFile);
+            doc.getDocumentElement().normalize();
+
+            System.out.println("Nombre cancion");
+            cancion = t.next();
+
+            updateElementValue(doc, cancion);
+
+            doc.getDocumentElement().normalize();
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(new File("archivos.xml"));
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.transform(source, result);
+            System.out.println("XML file updated successfully");
+
+        } catch (SAXException | ParserConfigurationException | IOException | TransformerException e1) {
+            e1.printStackTrace();
+        }
+    }
 
     private static void updateElementValue(Document doc, String cancion) {
         NodeList employees = doc.getElementsByTagName("Archivo");
