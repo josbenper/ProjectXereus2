@@ -8,6 +8,7 @@ package Clases;
 import XML.LeerXML;
 import XML.PuntuarXML;
 import java.util.Scanner;
+import reproductor.Reproductor;
 
 /**
  *
@@ -17,8 +18,14 @@ public class Menu {
     public static void main(String[] args) {
         Scanner t = new Scanner(System.in);
         
+        ListaArchivos canciones = new ListaArchivos();
+        
+        Archivo cancion;
+        
         LeerXML leerXml = new LeerXML();
         PuntuarXML puntual = new PuntuarXML();
+        
+        Reproductor reproductor = new Reproductor();
         
         int op;
         
@@ -38,6 +45,13 @@ public class Menu {
                         switch (op) {
                             case 1:
                                 System.out.println("Play");
+                                canciones.clearCanciones();
+                                LeerXML.leer(canciones,1);
+                                cancion = canciones.maxPoints();
+                                System.out.println(cancion.getNombre());
+                                reproductor.Reproducir(cancion);
+                                
+                              //  canciones.maxPoints();
                                 break;
                             case 2:
                                 System.out.println("Pause");
@@ -66,7 +80,7 @@ public class Menu {
                         switch (op) {
                             case 1:
                                 System.out.println("Listado de canciones.");
-                                LeerXML.leer();
+                                LeerXML.leer(canciones,0);
                                 break;
                             case 2:
                                 System.out.println("Introducir voto.");

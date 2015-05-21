@@ -6,7 +6,7 @@
 package XML;
 
 import Clases.Archivo;
-import Clases.listaArchivos;
+import Clases.ListaArchivos;
 import java.io.IOException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -23,13 +23,9 @@ import org.xml.sax.SAXException;
  */
 public class LeerXML {
 
-    public static void main(String[] args) {
-        leer();
-    }
-
-    public static void leer() {
+   
+    public static void leer(ListaArchivos listaAr, int codigo) {
   
-        listaArchivos listaAr = null;
         Archivo cancion;
         String directorio="", nombre="";
         int votos=0;
@@ -47,12 +43,14 @@ public class LeerXML {
             for (int i = 0; i < listaEmpleados.getLength(); i++) {
                 //Obtener de la lista un empleado tras otro
                 Node empleado = listaEmpleados.item(i);
-                System.out.println("Mp3 " + i);
-                System.out.println("==========");
+                if (codigo==0) {
+                    System.out.println("Mp3 " + i);
+                    System.out.println("==========");
+                }
               //  pos++;
-                //Obtener la lista de los datos que contiene ese empleado
+                //Obtener la lista de los datos que contiene esa cancion
                 NodeList datosEmpleado = empleado.getChildNodes();
-                //Recorrer la lista de los datos que contiene el empleado
+                //Recorrer la lista de los datos que contiene la cancion
                 for (int j = 0; j < datosEmpleado.getLength(); j++) {
                     //Obtener de la lista de datos un dato tras otro
                     Node dato = datosEmpleado.item(j);
@@ -60,27 +58,35 @@ public class LeerXML {
                     //Comprobar que el dato se trata de un nodo de tipo Element
                     if (dato.getNodeType() == Node.ELEMENT_NODE) {
                         //Mostrar el nombre del tipo de dato
-                        System.out.print(dato.getNodeName() + ": ");
+                        if (codigo==0) {
+                            System.out.print(dato.getNodeName() + ": ");
+                        }
                         //El valor está contenido en un hijo del nodo Element
                         Node datoContenido = dato.getFirstChild();
                         //Mostrar el valor contenido en el nodo que debe ser de tipo Text
+                        
                         if (datoContenido != null && datoContenido.getNodeType() == Node.TEXT_NODE) {
-                            System.out.println(datoContenido.getNodeValue());
+                            if (codigo==0) {
+                               System.out.println(datoContenido.getNodeValue());
+                            }
+                            
+                        }
+                        if (codigo==1) {
+                            if (dato.getNodeName().toString().equalsIgnoreCase("Directorio")) {
+                            directorio=datoContenido.getNodeValue();
+                            }
+                            if (dato.getNodeName().toString().equalsIgnoreCase("Nombre")) {
+                                 nombre=datoContenido.getNodeValue();
+                            }
+                            if (dato.getNodeName().toString().equalsIgnoreCase("Votos")) {
+                                votos=Integer.parseInt(datoContenido.getNodeValue());
+                            }
+
+                            cancion = new Archivo(directorio, nombre, votos);
+                            listaAr.getArchivos().add(cancion);
                         }
                         
-                        if (dato.getNodeName().toString().equalsIgnoreCase("Directorio")) {
-                            directorio=datoContenido.getNodeValue();
-                        }
-                        if (dato.getNodeName().toString().equalsIgnoreCase("Nombre")) {
-                             nombre=datoContenido.getNodeValue();
-                        }
-                        if (dato.getNodeName().toString().equalsIgnoreCase("Votos")) {
-                            votos=Integer.parseInt(datoContenido.getNodeValue());
-                        }
-                        /*
-                        cancion = new Archivo(directorio, nombre, votos);
-                        listaAr.getArchivos().add(cancion);
-                        */
+                        
                     }
                 }
                 //Se deja un salto de línea de separación entre cada mp3

@@ -1,5 +1,6 @@
 package reproductor;
 
+import Clases.Archivo;
 import java.io.File;
 import javazoom.jlgui.basicplayer.BasicPlayer;
 
@@ -35,11 +36,21 @@ public class Reproductor {
     public void Stop() throws Exception {
         player.stop();
     }
-
+    /*
     public static void main(String args[]){
         try {
             Reproductor mi_reproductor = new Reproductor();
             mi_reproductor.AbrirFichero("D:\\Musica\\music\\Radioactive.mp3");
+            mi_reproductor.Play();
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.getMessage());
+        }
+    }
+    */
+    public static void Reproducir(Archivo cancion){
+        try {
+            Reproductor mi_reproductor = new Reproductor();
+            mi_reproductor.AbrirFichero(cancion.getDirectorio()+cancion.getNombre());
             mi_reproductor.Play();
         } catch (Exception ex) {
             System.out.println("Error: " + ex.getMessage());
