@@ -5,6 +5,7 @@
  */
 package Clases;
 
+import XML.GeneradorXML;
 import XML.LeerXML;
 import XML.PuntuarXML;
 import java.util.Scanner;
@@ -24,6 +25,7 @@ public class Menu {
         
         LeerXML leerXml = new LeerXML();
         PuntuarXML puntual = new PuntuarXML();
+        GeneradorXML generarXml = new GeneradorXML();
         
         Reproductor reproductor = new Reproductor();
         
@@ -86,6 +88,10 @@ public class Menu {
                                 System.out.println("Introducir voto.");
                                 PuntuarXML.votar();
                                 break;
+                            case 3:
+                                System.out.println("Generando XML.");
+                                generarXml.generar();
+                                break;
                             default:
                                 System.err.println("**************************");
                                 System.err.println("**** OPCION NO VALIDA ****");
@@ -131,6 +137,7 @@ public class Menu {
         System.out.println("\n\t*********** VOTAR **********");
         System.out.println("\t1- Listar canciones.");
         System.out.println("\t2- Introducir voto.");
+        System.out.println("\t3- Generar XML.");
         System.out.println("\t0- Salir.");
         System.out.print("\tOpcion: ");
     }

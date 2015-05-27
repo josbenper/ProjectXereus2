@@ -12,10 +12,10 @@ import java.util.ArrayList;
  *
  * @author Benavent
  */
-public class listaArchivos{
+public class ListaArchivos{
     private ArrayList<Archivo> archivos;
 
-    public listaArchivos() {
+    public ListaArchivos() {
         archivos = new ArrayList<Archivo>();
     }
 
@@ -27,5 +27,15 @@ public class listaArchivos{
     public void setArchivos(Archivo cancion) {
         this.archivos = archivos;
     }
+
+    void clearCanciones() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    Archivo maxPoints() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
      
 }

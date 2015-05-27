@@ -38,15 +38,15 @@ public class LeerXML {
             Element raiz = documento.getDocumentElement();
 
             //Obtener la lista de nodos que tienen etiqueta "Archivo"
-            NodeList listaEmpleados = raiz.getElementsByTagName("Archivo");
+            NodeList listaCanciones = raiz.getElementsByTagName("Cancion");
+            NodeList listaDatos = raiz.getElementsByTagName("Datos");
+            
             //Recorrer la lista de archivos
-            for (int i = 0; i < listaEmpleados.getLength(); i++) {
+            for (int i = 0; i < listaCanciones.getLength(); i++) {
                 //Obtener de la lista un empleado tras otro
-                Node empleado = listaEmpleados.item(i);
-                if (codigo==0) {
+                Node empleado = listaCanciones.item(i);
                     System.out.println("Mp3 " + i);
                     System.out.println("==========");
-                }
               //  pos++;
                 //Obtener la lista de los datos que contiene esa cancion
                 NodeList datosEmpleado = empleado.getChildNodes();
@@ -58,20 +58,15 @@ public class LeerXML {
                     //Comprobar que el dato se trata de un nodo de tipo Element
                     if (dato.getNodeType() == Node.ELEMENT_NODE) {
                         //Mostrar el nombre del tipo de dato
-                        if (codigo==0) {
                             System.out.print(dato.getNodeName() + ": ");
-                        }
                         //El valor está contenido en un hijo del nodo Element
                         Node datoContenido = dato.getFirstChild();
                         //Mostrar el valor contenido en el nodo que debe ser de tipo Text
                         
                         if (datoContenido != null && datoContenido.getNodeType() == Node.TEXT_NODE) {
-                            if (codigo==0) {
                                System.out.println(datoContenido.getNodeValue());
-                            }
                             
                         }
-                        if (codigo==1) {
                             if (dato.getNodeName().toString().equalsIgnoreCase("Directorio")) {
                             directorio=datoContenido.getNodeValue();
                             }
@@ -84,8 +79,6 @@ public class LeerXML {
 
                             cancion = new Archivo(directorio, nombre, votos);
                             listaAr.getArchivos().add(cancion);
-                        }
-                        
                         
                     }
                 }
