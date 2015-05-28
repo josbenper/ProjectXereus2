@@ -3,12 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Clases;
+package Aplicacion;
 
+import Clases.Archivo;
+import Clases.ListaArchivos;
+import Dom.XmlCtl;
 import XML.GeneradorXML;
 import XML.LeerXML;
 import XML.PuntuarXML;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import reproductor.Reproductor;
 
 /**
@@ -23,6 +28,7 @@ public class Menu {
         
         Archivo cancion;
         
+        XmlCtl xmlDom = new XmlCtl();
         LeerXML leerXml = new LeerXML();
         PuntuarXML puntual = new PuntuarXML();
         GeneradorXML generarXml = new GeneradorXML();
@@ -82,15 +88,18 @@ public class Menu {
                         switch (op) {
                             case 1:
                                 System.out.println("Listado de canciones.");
-                                LeerXML.leer(canciones,0);
+                        {
+                            try {
+                                // LeerXML.leer(canciones,0);
+                                xmlDom.LeerXml();
+                            } catch (Exception ex) {
+                                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
                                 break;
                             case 2:
                                 System.out.println("Introducir voto.");
                                 PuntuarXML.votar();
-                                break;
-                            case 3:
-                                System.out.println("Generando XML.");
-                                generarXml.generar();
                                 break;
                             default:
                                 System.err.println("**************************");
@@ -102,6 +111,10 @@ public class Menu {
                         op = t.nextInt();
                         System.out.println("");
                     }
+                    break;
+                    case 3:
+                        System.out.println("Generando XML.");
+                        generarXml.generar();
                     break;
                 default:
                     System.err.println("**************************");
@@ -120,6 +133,7 @@ public class Menu {
         System.out.println("\n*********** MENU ***********");
         System.out.println("1- Reproductor.");
         System.out.println("2- Votar.");
+        System.out.println("3- Cargar XML.");
         System.out.println("0- Salir.");
         System.out.print("Opcion: ");
     }
@@ -137,7 +151,6 @@ public class Menu {
         System.out.println("\n\t*********** VOTAR **********");
         System.out.println("\t1- Listar canciones.");
         System.out.println("\t2- Introducir voto.");
-        System.out.println("\t3- Generar XML.");
         System.out.println("\t0- Salir.");
         System.out.print("\tOpcion: ");
     }
