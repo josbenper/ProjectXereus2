@@ -21,7 +21,7 @@ import reproductor.Reproductor;
  * @author Benavent
  */
 public class Menu {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner t = new Scanner(System.in);
         
         ListaArchivos canciones = new ListaArchivos();
@@ -88,14 +88,9 @@ public class Menu {
                         switch (op) {
                             case 1:
                                 System.out.println("Listado de canciones.");
-                        {
-                            try {
                                 // LeerXML.leer(canciones,0);
+                                xmlDom = new XmlCtl("archivos.xml");
                                 xmlDom.LeerXml();
-                            } catch (Exception ex) {
-                                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
                                 break;
                             case 2:
                                 System.out.println("Introducir voto.");
